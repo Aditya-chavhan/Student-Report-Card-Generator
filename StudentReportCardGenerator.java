@@ -1,0 +1,66 @@
+package Projects;
+import java.util.*;
+
+class Student {
+    String name;
+    int[] marks;
+    int total;
+    double percentage;
+    String grade;
+
+    Student(String name, int[] marks) {
+        this.name = name;
+        this.marks = marks;
+        calculate();
+    }
+
+    void calculate() {
+        total = 0;
+        for (int m : marks) {
+            total += m;
+        }
+
+        percentage = total / 5.0;
+
+        if (percentage >= 90)
+            grade = "A";
+        else if (percentage >= 75)
+            grade = "B";
+        else if (percentage >= 60)
+            grade = "C";
+        else if (percentage >= 40)
+            grade = "D";
+        else
+            grade = "F";
+    }
+
+    void displayReport() {
+        System.out.println("REPORT CARD");
+        System.out.println("Name: " + name);
+        System.out.println("Marks: " + Arrays.toString(marks));
+        System.out.println("Total: " + total);
+        System.out.println("Percentage: " + percentage + "%");
+        System.out.println("Grade: " + grade);
+    }
+}
+public class StudentReportCardGenerator {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter student name: ");
+        String name = sc.nextLine();
+
+        int[] marks = new int[5];
+        String[] subjects = {"Math", "Science", "English", "History", "Computer"};
+
+
+        for (int i = 0; i < 5; i++) {
+            System.out.print("Enter marks for " + subjects[i] + ": ");
+            marks[i] = sc.nextInt();
+        }
+
+        Student s = new Student(name, marks);
+
+        s.displayReport();
+    }
+}
